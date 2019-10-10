@@ -1,5 +1,6 @@
 package com.lenny;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 
 /**
@@ -50,8 +51,9 @@ public class BinarySearch {
 
         int count =0;
         while (low<=high){
-            count++;
-            System.out.println(count);
+            //count++;
+            ++count;
+            //System.out.println(count);
             middle = (low+high)/2;
             if (arr[middle]>key){
                 high = middle -1;
@@ -72,7 +74,19 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         int[] arr=new int[]{5,10,19,21,31,37,42,48,50,55};
+        //1、查找索引 - binarySearch
+        //int i = binarySearch(arr,5);
+        //System.out.println(i);
 
+        //2、索引及查找次数 - binarySearchWithSearchCount
+        HashMap<String, Integer> hashMap = null;
+        String tmp="数字：{0}，索引：{1}，查找次数：{2}{3}";
+        String print="";
+        for (int num:arr) {
+            hashMap= binarySearchWithSearchCount(arr,num);
+            print= MessageFormat.format(tmp,num,hashMap.get(KEY_INDEX),hashMap.get(KEY_COUNT),"\r");
+            System.out.println(print);
+        }
     }
 
 
